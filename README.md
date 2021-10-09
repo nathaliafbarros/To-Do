@@ -26,8 +26,9 @@ Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operaç
 
 ### Comandos extras
 Para liberar o yarn:
-    -> Set-ExecutionPolicy -Scope CurrentUser
-    -> RemoteSigned
+-> Set-ExecutionPolicy -Scope CurrentUser
+-> RemoteSigned
+Para iniciar:  
 -> "yarn" na pasta do projeto clonado, para instalar todas as dependências
 -> "yarn dev" para startar o server
 
