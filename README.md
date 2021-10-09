@@ -24,12 +24,12 @@ Desafio 01 da trilha Node.js - Ignite Rocketseat
 Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operações básicas de armazenamento persistente.
 
 
-### Comandos extras
-Para liberar o yarn:
--> Set-ExecutionPolicy -Scope CurrentUser
--> RemoteSigned
+### Comandos extras  
+Para liberar o yarn:  
+-> Set-ExecutionPolicy -Scope CurrentUser  
+-> RemoteSigned  
 Para iniciar:  
--> "yarn" na pasta do projeto clonado, para instalar todas as dependências
+-> "yarn" na pasta do projeto clonado, para instalar todas as dependências  
 -> "yarn dev" para startar o server
 
 ### Sobre os testes automatizados
