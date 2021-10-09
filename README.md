@@ -25,13 +25,13 @@ Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operaç
 
 
 ### Comandos extras
-Para liberar o yarn:
+Para liberar o yarn:  
     -> Set-ExecutionPolicy -Scope CurrentUser  
     -> RemoteSigned  
 -> "yarn" na pasta do projeto clonado, para instalar todas as dependências  
 -> "yarn dev" para startar o server  
 
-### Sobre testes automatizados
+### Sobre os testes automatizados
 Os testes sempre vão ficar dentro de uma pasta chamada `__tests__` dentro da pasta `src`.
 
 Dentro da pasta de testes, para cada arquivo testado na sua aplicação, existe um arquivo com o mesmo nome, com a extensão `.spec.js`.
