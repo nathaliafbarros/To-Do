@@ -1,13 +1,13 @@
 ## To Do - gerenciador de tarefas
-Desafio 01 da trilha Node.js - Ignite Rocketseat
+Desafio 01 da trilha Node.js - Ignite Rocketseat  
 
 ### Requisitos
-[x] Should be able to create a new user whith `name` e `username`
-[x] Should be able to create a new todo
-[x] Should be able to list all user's todos
-[x] Should be able to update a todo(`title` e `deadline`) 
-[x] Should be able to mark a todo as done
-[x] Should be able to delete a todo
+[x] Should be able to create a new user whith `name` e `username`  
+[x] Should be able to create a new todo  
+[x] Should be able to list all user's todos  
+[x] Should be able to update a todo(`title` e `deadline`)  
+[x] Should be able to mark a todo as done  
+[x] Should be able to delete a todo  
 
 
 ### Regras de negócio
