@@ -111,6 +111,7 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
   const {user} = request;
 
   const {id} = request.params;
+  console.log(id);
   const {title, deadline} = request.body;
 
   const todo = user.todos.find((todo) => todo.id === id);
@@ -123,6 +124,8 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
   todo.deadline = new Date(deadline);
 
   return response.json(todo);
+
+  //Para testar no insomnia: {{ _.baseURL }}/todos/6e1a8513-8187-4e5e-88fe-cdfe0518150c
 });
 
 //Update done no todo
@@ -141,6 +144,8 @@ app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
   todo.done = true;
   
   return response.json(todo);  
+
+  //Para testar no insomnia: /todos/ceacc535-1904-4e5c-9067-bd59b90e4fc6/done
 });
 
 app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
