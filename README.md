@@ -41,20 +41,20 @@ Dessa vez teremos um plano grátis onde o usuário só pode criar até dez *todo
 Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operações básicas de armazenamento persistente.  
 
 
-### Instalação  
-# Para liberar o yarn:  
+## Instalação  
+### Para liberar o yarn:  
 -> Set-ExecutionPolicy -Scope CurrentUser  
 -> RemoteSigned 
 
-# Clone este repositório
+### Clone este repositório
 -> git clone https://github.com/nathaliafbarros/desafio01-trilha-nodejs.git
-# Entre na pasta do projeto clonado
+### Entre na pasta do projeto clonado
 -> cd desafio01-trilha-nodejs
-# Instale as dependências
+### Instale as dependências
 -> yarn ou yarn install
-# Para startar o servidor. (O servidor iniciará na porta:3333. Acesse http://localhost:3333)
+### Para startar o servidor. (O servidor iniciará na porta:3333. Acesse http://localhost:3333)
 -> "yarn dev" 
-# Para rodar os testes
+### Para rodar os testes
 -> yarn test
 
 ### Sobre os testes automatizados
