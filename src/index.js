@@ -19,12 +19,13 @@ console.log("servidor rodando");
 ////Importando o uuid, determinando uma versão específica. A versão v4 gera o id com números randômicos.
 //const {v4} = require("uuid");
 //Renomeando a função para uuidv4, para ficar mais fácil de trabalhar
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4, validate } = require('uuid');
+const { request } = require('express');
 
 const users = [];
 
-//Middleware
-function checksExistsUserAccount(request, response, next) {
+//Middlewares 
+function checksExistsUserAccount(request, response, next) { 
   const {username} = request.headers;
   //const {cpf} = request.headers;
 
@@ -48,10 +49,63 @@ function checksExistsUserAccount(request, response, next) {
 
 };
 
+function checksCreateTodosUserAvailability(request, response, next){ 
+  //Recuperando o user de dentro do middleware
+  const {user} = request; 
+
+  if(!user.pro && user.todos.length >= 10){
+    return response.status(403).json({error: "User is not Pro and already have ten todos"})
+  } 
+  
+  return next();
+};
+
+function checksTodoExists(request, response, next){    
+  const {username} = request.headers;
+  const {id} = request.params;
+
+  const user = users.find((user) => user.username === username); //O find retorna o valor(a informação)do primeiro elemento de um array que retornar true para uma função de teste fornecida.
+
+  if(!user){
+    return response.status(404).json({error: "User not found!"});
+  };
+  
+  if(!validate(id)){
+    return response.status(400).json({error: "The provided id is not a uuid"})
+  };
+
+  const todo = user.todos.find((todo) => todo.id === id);
+
+  if(!todo){
+    return response.status(404).json({error: "User's todo not found"})
+  };
+
+  request.todo = todo;
+  request.user = user;
+
+  return next();
+};
+
+function findUserById(request, response, next) {
+  const {id} = request.params;
+  
+  const user = users.find((user) => user.id === id);
+
+  if(!user){
+    return response.status(404).json({error: "Id not found!"});
+  }
+
+  //Repassando informações de dentro do middleware para demais rotas(que estão chamando o middleware). 
+  request.user = user;  
+
+  return next();
+   
+};
+
 
 //Rotas
 //Criar usuários
-app.post('/users', (request, response) => {
+app.post('/users', (request, response) => { 
   const {name, username} = request.body;
 
   const usernameAlreadyExists = users.find((user) => user.username === username);
@@ -64,6 +118,7 @@ app.post('/users', (request, response) => {
     id:uuidv4(),
     name,
     username,
+    pro: false,
     todos: []    
   }
   
@@ -73,8 +128,17 @@ app.post('/users', (request, response) => {
   return response.status(201).json(user);
 });
 
-//Listar todos de um usuário
-app.get('/todos', checksExistsUserAccount, (request, response) => {
+//Listar users pelo id
+app.get('/users/:id', findUserById, (request, response) => {  
+  //Recuperando o user de dentro do middleware
+  const {user} = request;
+
+  return response.json(user);
+});
+
+
+//Listar todos de um usuário  
+app.get('/todos', checksExistsUserAccount, (request, response) => {   
   //Recuperando o user de dentro do middleware
   const {user} = request; 
   //const {customer} = request; 
@@ -83,8 +147,8 @@ app.get('/todos', checksExistsUserAccount, (request, response) => {
   
 });
 
-//Criar todo
-app.post('/todos', checksExistsUserAccount, (request, response) => {
+//Criar todo 
+app.post('/todos', checksExistsUserAccount, checksCreateTodosUserAvailability, (request, response) => {
   const {title, deadline} = request.body;
   
   //Recuperando o user de dentro do middleware
@@ -106,7 +170,7 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
 });
 
 //Alterar título e deadline do todo 
-app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
+app.put('/todos/:id', checksExistsUserAccount, checksTodoExists, (request, response) => {
   //Recuperando o user de dentro do middleware
   const {user} = request;
 
@@ -128,8 +192,8 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
   //Para testar no insomnia: {{ _.baseURL }}/todos/6e1a8513-8187-4e5e-88fe-cdfe0518150c
 });
 
-//Update done no todo
-app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
+//Update done no todo 
+app.patch('/todos/:id/done', checksExistsUserAccount, checksTodoExists, (request, response) => {
   //Recuperando o user de dentro do middleware
   const {user} = request;
 
@@ -148,7 +212,8 @@ app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
   //Para testar no insomnia: /todos/ceacc535-1904-4e5c-9067-bd59b90e4fc6/done
 });
 
-app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
+//Deletar todo 
+app.delete('/todos/:id', checksExistsUserAccount, checksTodoExists, (request, response) => {
   //Recuperando o user de dentro do middleware
   const {user} = request;
 
@@ -166,6 +231,21 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
   user.todos.splice(todoIndex, 1); //Então a partir da posição 2, por exemplo, exclua 1 elemento. No caso, somente o todoIndex
 
   return response.status(204).json();
+});
+
+//Plano pro
+app.patch('/users/:id/pro', checksExistsUserAccount, (request, response) => { 
+  //Colocar o findUserById aqui como middleware não adianta, pois somente o user é requisitado e não o id
+  //Recuperando o user de dentro do middleware
+  const {user} = request;
+
+  if(user.pro){
+    return response.status(400).json({error: 'Pro plan is already activated!'});
+  }
+
+  user.pro = true;
+
+  return response.json(user);
 });
 
 module.exports = app;

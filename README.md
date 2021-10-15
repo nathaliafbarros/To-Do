@@ -1,36 +1,66 @@
 ## To Do - gerenciador de tarefas
 Desafio 01 da trilha Node.js - Ignite Rocketseat  
 
-### Requisitos
-[x] Should be able to create a new user whith `name` e `username`  
-[x] Should be able to create a new todo  
-[x] Should be able to list all user's todos  
-[x] Should be able to update a todo(`title` e `deadline`)  
-[x] Should be able to mark a todo as done  
-[x] Should be able to delete a todo  
+### Requisitos - Desafio 01
+[x] Users should be able to create a new user whith `name` and `username`  
+[x] Todos should be able to create a new todo  
+[x] Todos should be able to list all user's todos  
+[x] Todos should be able to update a todo(`title` and `deadline`)  
+[x] Todos should be able to mark a todo as done  
+[x] Todos should be able to delete a todo  
+
+### Requisitos - Desafio 02
+Dessa vez teremos um plano grátis onde o usuário só pode criar até dez *todos* e um plano Pro que irá permitir criar *todos* ilimitados, isso tudo usando middlewares para fazer as validações necessárias.
+[x] checksCreateTodosUserAvailability  
+Esse middleware deve receber o usuário já dentro do request e chamar a função next apenas se esse usuário ainda estiver no plano grátis e ainda não possuir 10 todos cadastrados ou se ele já estiver com o plano Pro ativado. 
+[x] checksTodoExists
+Esse middleware deve receber o **username** de dentro do header e o **id** de um *todo* de dentro de `request.params`. Você deve validar o usuário, validar que o `id` seja um uuid e também validar que esse `id` pertence a um *todo* do usuário informado.
+Com todas as validações passando, o *todo* encontrado deve ser passado para o `request` assim como o usuário encontrado também e a função next deve ser chamada.
+[x] findUserById
+Esse middleware possui um funcionamento semelhante ao middleware `checksExistsUserAccount` mas a busca pelo usuário deve ser feita através do **id** de um usuário passado por parâmetro na rota. Caso o usuário tenha sido encontrado, o mesmo deve ser repassado para dentro do `request.user` e a função next deve ser chamada.
 
 
-### Regras de negócio
+### Regras de negócio - Desafio 01
 [x] `name` e `username` devem ser passados dentro do corpo da requisição  
-[x] Should not be able to create a new user when username already exists  
+[x] Users should not be able to create a new user when username already exists  
 [x] A rota POST `/todos` deve receber  as propriedades  `title` e `deadline` dentro do corpo da requisição  
 [x] A rota PUT `/todos/:id` deve receber as propriedades `title` e `deadline` dentro do corpo da requisição  
-[x] Should not be able to update a non existing todo  
-[x] Should not be able to mark a non existing todo as done  
-[x] Should not be able to delete a non existing todo  
-[x] o `username` será passado pelo header da requisição. (Esse `username` recebido pelo header da requisição vem através do Middleware. Esse Middleware repassa o `user`, que no caso contem o `username`)  
+[x] Todos should not be able to update a non existing todo  
+[x] Todos should not be able to mark a non existing todo as done  
+[x] Todos should not be able to delete a non existing todo  
+[x] o `username` será passado pelo header da requisição. (Esse `username` recebido pelo header da requisição vem através do Middleware. Esse Middleware repassa o `user`, que no caso contem o `username`) 
 
-   
+### Regras de negócio - Desafio 02
+[x] Should be able to find user by username in header and pass it to request.user
+[x] Should not be able to find a non existing user by username in header
+[x] Should be able to let user create a new todo when is in free plan and have less than ten todos
+[x] Should not be able to let user create a new todo when is not Pro and already have ten todos
+[x] Should be able to let user create infinite new todos when is in Pro plan
+[x] Should be able to put user and todo in request when both exits
+[x] Should not be able to put user and todo in request when user does not exists
+[x] Should not be able to put user and todo in request when todo id is not uuid
+[x] Should not be able to put user and todo in request when todo does not exists
+[x] Should be able to find user by id route param and pass it to request.user
+[x] Should not be able to pass user to request.user when it does not exists
+ 
 Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operações básicas de armazenamento persistente.
 
 
-### Comandos extras  
-Para liberar o yarn:  
+### Instalação  
+# Para liberar o yarn:  
 -> Set-ExecutionPolicy -Scope CurrentUser  
--> RemoteSigned  
-Para iniciar:  
--> "yarn" na pasta do projeto clonado, para instalar todas as dependências  
--> "yarn dev" para startar o server
+-> RemoteSigned 
+
+# Clone este repositório
+-> git clone https://github.com/nathaliafbarros/desafio01-trilha-nodejs.git
+# Entre na pasta do projeto clonado
+-> cd desafio01-trilha-nodejs
+# Instale as dependências
+-> yarn ou yarn install
+# Para startar o servidor. (O servidor iniciará na porta:3333. Acesse http://localhost:3333)
+-> "yarn dev" 
+# Para rodar os testes
+-> yarn test
 
 ### Sobre os testes automatizados
 Os testes sempre vão ficar dentro de uma pasta chamada `__tests__` dentro da pasta `src`.
