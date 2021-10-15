@@ -10,17 +10,12 @@ Desafio 01 da trilha Node.js - Ignite Rocketseat
 [x] Todos should be able to delete a todo  
 
 ### Requisitos - Desafio 02
-Dessa vez teremos um plano grátis onde o usuário só pode criar até dez *todos* e um plano Pro que irá permitir criar *todos* ilimitados, isso tudo usando middlewares para fazer as validações necessárias.
+Dessa vez teremos um plano grátis onde o usuário só pode criar até dez *todos* e um plano Pro que irá permitir criar *todos* ilimitados, isso tudo usando middlewares para fazer as validações necessárias.  
 [x] checksCreateTodosUserAvailability  
-Esse middleware deve receber o usuário já dentro do request e chamar a função next apenas se esse usuário ainda estiver no plano grátis e ainda não possuir 10 todos cadastrados ou se ele já estiver com o plano Pro ativado. 
-[x] checksTodoExists
-Esse middleware deve receber o **username** de dentro do header e o **id** de um *todo* de dentro de `request.params`. Você deve validar o usuário, validar que o `id` seja um uuid e também validar que esse `id` pertence a um *todo* do usuário informado.
-Com todas as validações passando, o *todo* encontrado deve ser passado para o `request` assim como o usuário encontrado também e a função next deve ser chamada.
-[x] findUserById
-Esse middleware possui um funcionamento semelhante ao middleware `checksExistsUserAccount` mas a busca pelo usuário deve ser feita através do **id** de um usuário passado por parâmetro na rota. Caso o usuário tenha sido encontrado, o mesmo deve ser repassado para dentro do `request.user` e a função next deve ser chamada.
+[x] checksTodoExists  
+[x] findUserById  
 
-
-### Regras de negócio - Desafio 01
+### Regras de negócio - Desafio 01  
 [x] `name` e `username` devem ser passados dentro do corpo da requisição  
 [x] Users should not be able to create a new user when username already exists  
 [x] A rota POST `/todos` deve receber  as propriedades  `title` e `deadline` dentro do corpo da requisição  
@@ -30,20 +25,20 @@ Esse middleware possui um funcionamento semelhante ao middleware `checksExistsUs
 [x] Todos should not be able to delete a non existing todo  
 [x] o `username` será passado pelo header da requisição. (Esse `username` recebido pelo header da requisição vem através do Middleware. Esse Middleware repassa o `user`, que no caso contem o `username`) 
 
-### Regras de negócio - Desafio 02
-[x] Should be able to find user by username in header and pass it to request.user
-[x] Should not be able to find a non existing user by username in header
-[x] Should be able to let user create a new todo when is in free plan and have less than ten todos
-[x] Should not be able to let user create a new todo when is not Pro and already have ten todos
-[x] Should be able to let user create infinite new todos when is in Pro plan
-[x] Should be able to put user and todo in request when both exits
-[x] Should not be able to put user and todo in request when user does not exists
-[x] Should not be able to put user and todo in request when todo id is not uuid
-[x] Should not be able to put user and todo in request when todo does not exists
-[x] Should be able to find user by id route param and pass it to request.user
-[x] Should not be able to pass user to request.user when it does not exists
+### Regras de negócio - Desafio 02  
+[x] Should be able to find user by username in header and pass it to request.user  
+[x] Should not be able to find a non existing user by username in header  
+[x] Should be able to let user create a new todo when is in free plan and have less than ten todos  
+[x] Should not be able to let user create a new todo when is not Pro and already have ten todos  
+[x] Should be able to let user create infinite new todos when is in Pro plan  
+[x] Should be able to put user and todo in request when both exits  
+[x] Should not be able to put user and todo in request when user does not exists  
+[x] Should not be able to put user and todo in request when todo id is not uuid  
+[x] Should not be able to put user and todo in request when todo does not exists  
+[x] Should be able to find user by id route param and pass it to request.user  
+[x] Should not be able to pass user to request.user when it does not exists  
  
-Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operações básicas de armazenamento persistente.
+Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operações básicas de armazenamento persistente.  
 
 
 ### Instalação  
