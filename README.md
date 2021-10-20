@@ -1,5 +1,5 @@
 ## To Do - gerenciador de tarefas
-Desafio 01 da trilha Node.js - Ignite Rocketseat  
+Desafio 01 e 02 da trilha Node.js - Ignite Rocketseat  
 
 ### Requisitos - Desafio 01
 [x] Users should be able to create a new user whith `name` and `username`  
