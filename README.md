@@ -53,7 +53,7 @@ Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operaç
 ### Instale as dependências
 -> yarn ou yarn install
 ### Para startar o servidor (O servidor iniciará na porta:3333. Acesse http://localhost:3333)
--> "yarn dev" 
+-> yarn dev 
 ### Para rodar os testes
 -> yarn test
 

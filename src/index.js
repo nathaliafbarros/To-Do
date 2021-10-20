@@ -136,7 +136,6 @@ app.get('/users/:id', findUserById, (request, response) => {
   return response.json(user);
 });
 
-
 //Listar todos de um usuário  
 app.get('/todos', checksExistsUserAccount, (request, response) => {   
   //Recuperando o user de dentro do middleware
