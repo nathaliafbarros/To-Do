@@ -44,7 +44,7 @@ Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operaç
 ## Instalação  
 ### Clone este repositório
 -> git clone https://github.com/nathaliafbarros/desafio01-trilha-nodejs.git
-### Entre na pasta do projeto clonado
+### Navegue até a pasta do projeto clonado
 -> cd desafio01-trilha-nodejs
 ### Instale as dependências
 -> yarn ou yarn install
