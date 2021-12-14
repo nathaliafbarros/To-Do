@@ -42,10 +42,6 @@ Obs: CRUD (Create, Read, Update, Delete) É um mnemônico para as quatro operaç
 
 
 ## Instalação  
-### Para liberar o yarn:  
--> Set-ExecutionPolicy -Scope CurrentUser  
--> RemoteSigned 
-
 ### Clone este repositório
 -> git clone https://github.com/nathaliafbarros/desafio01-trilha-nodejs.git
 ### Entre na pasta do projeto clonado
