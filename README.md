@@ -1,4 +1,4 @@
-## To Do - gerenciador de tarefas
+## To Do - API gerenciador de tarefas
 Desafios 01 e 02 da trilha Node.js - Ignite Rocketseat  
 
 ### Requisitos - Desafio 01
